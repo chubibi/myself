@@ -1,0 +1,87 @@
+.bodySection {
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    max-width: 75rem;
+    margin: 0 auto;
+    overflow: hidden;
+    color: white;
+}
+
+.imgPerfil {
+    position: absolute;
+    top: 10rem;
+    right: 2.5rem;
+    z-index: -1;
+    object-fit: cover;
+    height: 90vh;
+    border-radius: 2rem;
+    box-shadow: 0px 1px 12px #34c754ed;
+    background-image: linear-gradient(to bottom, #171717d9 , white);
+}
+
+.introSection {
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: -0.9px
+}
+
+.introPara {
+    margin-top: 1rem;
+    font-size: 200;
+    font-size: medium;
+    font-weight: 200;
+}
+
+.btnContact {
+    background-color: white;
+    margin: 1rem 0;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    overflow: hidden;
+}
+
+.btnContact svg {
+    margin-right: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.btnContact:hover {
+    transform: scale(1.1);
+    background-color: #2a9d48;
+    color: white;
+}
+
+.btnContact:hover svg {
+    transform: rotate(360deg);
+    fill: white;
+}
+
+
+.btnImage {
+    object-fit: cover;
+    margin: 0 0.25rem;
+    height: 3rem;
+}
+
+@media screen and (max-width:840px) {
+    .imgPerfil {
+        right: -10vw;
+    }
+    .introSection {
+        font-size: 10vw;
+    }
+}

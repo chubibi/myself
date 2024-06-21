@@ -1,0 +1,39 @@
+.navbarContainer{
+    height: 5rem;
+    width: 100vw;
+    max-width: 87rem;
+    margin: 0 auto;
+    padding: 4.5rem 2rem;
+    background: rgb(57, 57, 57);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.menuItem{
+    margin: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+}
+.menuItem:hover{
+    color: #a6ed8e;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid white;
+}
+
+.btnCV {
+    background-color: white;
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+}
+.btnCV:hover{
+    background-color: #34c754ed;
+    color: white;
+}

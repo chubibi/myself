@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background: #171717d9;
+    color: white;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-family: 'Inter', sans-serif; /* Aplica la fuente globalmente al body */
+}
+/* #56ac68e6 */
