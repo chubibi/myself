@@ -32,8 +32,15 @@
     align-items: center;
     justify-content: center;
     padding: 0 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
 }
 .btnCV:hover{
-    background-color: #34c754ed;
+    transform: scale(1.1);
+    background-color: #2a9d48;
     color: white;
+}
+
+.btnCV:hover svg {
+    fill: white;
 }

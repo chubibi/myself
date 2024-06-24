@@ -1,5 +1,4 @@
 .bodySection {
-    color: white;
     overflow: hidden;
     width: 100vw;
     max-width: 75rem;
@@ -9,19 +8,21 @@
     justify-content: center;
     text-align: center;
     margin: 0 auto;
+    margin-top: 7rem;
 }
 
 .skillTitle {
     font-size: 3rem;
     font-weight: 600;
     padding-top: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
-.skillDesc{
+.Descripcion{
     font-weight: 400;
-    font-size: 0.9rem;
-    max-width: 51rem;
+    font-size: 20px;
     padding: 0 2rem;
+    margin-bottom: 3rem;
+
 }
 .skillsBars {
     margin: 1.5rem;

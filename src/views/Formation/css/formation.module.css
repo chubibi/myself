@@ -1,0 +1,136 @@
+.wrapperMain {
+    margin: 0 auto;
+    min-height: calc(100vh -4rem);
+    width: 100vw;
+    max-width: 80rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+}
+
+.containerFormation {
+
+    h1 {
+        margin: 2rem 0;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .cardSchool {
+        background-color: white;
+        display: flex;
+        color: black;
+        align-items: center;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: left;
+
+        div {
+            padding: 1.5rem;
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin-bottom: 0.5rem;
+                color: green;
+            }
+        }
+
+        img {
+            width: 500px;
+            height: 150px;
+            border-radius: 1rem;
+            margin-left: 1.5rem;
+        }
+    }
+
+    .cardSchool:hover {
+        cursor: pointer;
+        filter: brightness(0.8);
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+}
+
+.headerContact {
+    margin-top: 3rem;
+    h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+}
+.containerContact {
+    margin-top: 3rem;
+    display: flex;
+    width: 90vw;
+    max-width: 60rem;
+}
+
+.contactInfo {
+    margin-top: 1.5rem;
+    background-color: white;
+    color: black;
+    padding: 2rem;
+    max-height: 18rem;
+    border-radius: 1.05rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contactForm {
+    margin: 1rem;
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: 60rem;
+
+    input,
+    textarea {
+        font-size: medium;
+        width: 100%;
+        max-width: 40rem;
+        height: 3rem;
+        margin: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #313131d9;
+    }
+
+    textarea {
+        font-family: Arial, Helvetica, sans-serif;
+        height: 10rem;
+        background-color: #313131d9;
+        ;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: 1px solid #34c754ed;
+    }
+
+    button {
+        margin-top: 2rem;
+        background-color: white;
+        padding: 0.75rem 3.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: large;
+        width: 60vh;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+}

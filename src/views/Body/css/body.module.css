@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    letter-spacing: -0.9px
+    letter-spacing: -0.9px;
 }
 
 .introPara {
@@ -75,6 +75,16 @@
     object-fit: cover;
     margin: 0 0.25rem;
     height: 3rem;
+}
+
+.socialmedia {
+    display: flex;
+    width: 5rem;
+    gap: 1rem;
+
+    svg:hover {
+        cursor: pointer;
+    }
 }
 
 @media screen and (max-width:840px) {
