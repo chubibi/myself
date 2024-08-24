@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './styles.module.css'
+import './styles.css'
 import { NavBar } from './views/NavBar/NavBar'
 import { Body } from './views/Body/Body'
 import { Skills } from './views/Skills/Skills'
