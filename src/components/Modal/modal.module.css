@@ -1,0 +1,56 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(47, 47, 47, 0.515);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+  }
+  
+  .modalContent h2 {
+    margin-bottom: 20px;
+    color: #000000;
+    text-align: center;
+  }
+
+  .modalContent p {
+    margin-bottom: 10px;
+    color: #000000;
+    text-align: center;
+  }
+
+  .modalContent form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modalContent input,
+  .modalContent textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .modalContent button {
+    padding: 10px;
+    background-color: #a6ed8e;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .closeButton {
+    border-radius: .5rem;
+    margin-top: 10px;
+    background-color: #f44336 !important;
+    color: white !important;
+  }

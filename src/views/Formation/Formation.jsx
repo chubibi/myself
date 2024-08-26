@@ -1,11 +1,14 @@
 import style from "./css/formation.module.css"
 import tesco from "../../../public/img/tesco.jpeg"
 export const Formation = () => {
+    function handleClick(e){
+        window.location.href = "https://tescoacalco.edomex.gob.mx/"
+    }
     return (
         <section className={style.wrapperMain}>
             <div className={style.containerFormation}>
                 <h1>Formación</h1>
-                <div className={style.cardSchool}>
+                <div className={style.cardSchool} onClick={handleClick}>
                     <div>
                         <h2>TESCo: Tecnológico de Estudios Superiores de Coacalco.</h2>
                         <p>Ing. Tecnologías de la Información y la Comunicación.</p>
@@ -14,7 +17,7 @@ export const Formation = () => {
                     <img src={tesco} alt="Imagen Escuela" />
                 </div>
             </div>
-            <div className={style.headerContact}>
+            <div className={style.headerContact} id="contact">
                 <h1>Contacto</h1>
                 <span>Por favor enviame un mensaje si te ha gustado mi trabajo, estoy disponible a nuevos retos.</span>
             </div>

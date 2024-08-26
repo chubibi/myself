@@ -1,7 +1,7 @@
 import style from "./css/skills.module.css"
 export const Skills = () => {
     return (
-        <section className={style.bodySection}>
+        <section className={style.bodySection} id="sobre-mi">
             <span className={style.skillTitle}>Un Poco Sobre Mí</span>
             <span className={style.Descripcion}>Ingeniero en Tecnologías de la Información y la Comunicación, con experiencia en desarrollo de software. <br/> Me apasiona el desarrollo móvil y el front-end pero siempre estoy dispuesto a superar nuevos retos.</span>
             <h1 style={{ margin: "3rem", color: "#a6ed8e" }}>Tecnologías más utilizadas</h1>
