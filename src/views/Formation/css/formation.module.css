@@ -1,136 +1,302 @@
 .wrapperMain {
     margin: 0 auto;
-    min-height: calc(100vh - 4rem);
-    width: 100vw;
-    max-width: 80rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 4rem 1rem;
     display: flex;
-    text-align: center;
     flex-direction: column;
+    gap: 4rem;
+}
+
+.formationSection {
+    width: 100%;
+}
+
+.sectionHeader {
+    margin-bottom: 2rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+}
+
+.badgeAvailable {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #d4f4dd;
+    border-radius: 50px;
+    font-size: 13px;
+    color: #2d6a3e;
+    font-weight: 500;
+}
+
+.badgeDotGreen {
+    width: 8px;
+    height: 8px;
+    background-color: #2d6a3e;
+    border-radius: 50%;
+}
+
+.educationCard {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.educationCard2 {
+    background: white;
+    margin-top: 16px;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.educationCard:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.educationCard2:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.educationIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f5f5f5;
+}
+
+.educationIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.educationContent {
+    flex: 1;
+    text-align: left;
+}
+
+.educationTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+}
+
+.educationDegree {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 0.25rem 0;
+}
+
+.educationYears {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 0;
+}
+
+.arrowBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    border: none;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    flex-shrink: 0;
 }
 
-.containerFormation {
-
-    h1 {
-        margin: 2rem 0;
-        font-size: 3rem;
-        margin-bottom: 3rem;
-    }
-
-    .cardSchool {
-        background-color: white;
-        display: flex;
-        color: black;
-        align-items: center;
-        border-radius: 1rem;
-        padding: 1.5rem;
-        text-align: left;
-
-        div {
-            padding: 1.5rem;
-
-            h2 {
-                font-size: 22px;
-                margin-bottom: 1rem;
-            }
-
-            p {
-                margin-bottom: 0.5rem;
-                color: green;
-            }
-        }
-
-        img {
-            width: 500px;
-            height: 150px;
-            border-radius: 1rem;
-            margin-left: 1.5rem;
-        }
-    }
-
-    .cardSchool:hover {
-        cursor: pointer;
-        filter: brightness(0.8);
-        transition: transform 0.3s ease, filter 0.3s ease;
-    }
+.arrowBtn:hover {
+    background: #e5e5e5;
+    color: #1a1a1a;
 }
 
-.headerContact {
-    margin-top: 3rem;
-    h1 {
-        font-size: 3rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
+.contactSection {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-.containerContact {
-    margin-top: 3rem;
+
+.contactHeader {
+    margin-bottom: 2rem;
+}
+
+.headerBadges {
     display: flex;
-    width: 90vw;
-    max-width: 60rem;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.contactInfo {
-    margin-top: 1.5rem;
-    background-color: white;
-    color: black;
-    padding: 2rem;
-    max-height: 18rem;
-    border-radius: 1.05rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+.contactTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
+}
+
+.contactDescription {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
 }
 
 .contactForm {
-    margin: 1rem;
     display: flex;
-    flex: 2;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90vw;
-    max-width: 60rem;
+    gap: 1rem;
+}
 
-    input,
-    textarea {
-        font-size: medium;
-        width: 100%;
-        max-width: 40rem;
-        height: 3rem;
-        margin: 0.5rem;
-        padding: 0.5rem 1rem;
-        color: white;
-        border: none;
-        border-radius: 0.5rem;
-        background-color: #313131d9;
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.formInput,
+.formTextarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: #f5f5f5;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+    color: #999;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    background: #fff;
+}
+
+.formTextarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submitBtn {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.submitBtn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .wrapperMain {
+        padding: 2rem 1rem;
+        gap: 3rem;
     }
 
-    textarea {
-        font-family: Arial, Helvetica, sans-serif;
-        height: 10rem;
-        background-color: #313131d9;
-        ;
+    .educationCard {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
     }
 
-    input:focus,
-    textarea:focus {
-        outline: 1px solid #34c754ed;
+    .educationContent {
+        text-align: center;
     }
 
-    button {
-        margin-top: 2rem;
-        background-color: white;
-        padding: 0.75rem 3.5rem;
-        border: none;
-        border-radius: 0.5rem;
-        font-size: large;
-        width: 60vh;
+    .educationTitle {
+        font-size: 1.1rem;
     }
-    button:hover {
-        cursor: pointer;
+
+    .educationDegree {
+        font-size: 0.95rem;
+    }
+
+    .contactSection {
+        padding: 2rem 1.5rem;
+    }
+
+    .contactTitle {
+        font-size: 2rem;
+    }
+
+    .contactDescription {
+        font-size: 1rem;
+    }
+
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+
+    .headerBadges {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contactTitle {
+        font-size: 1.75rem;
+    }
+
+    .educationIcon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .formInput,
+    .formTextarea {
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
     }
 }

@@ -1,38 +1,110 @@
 import style from "./css/formation.module.css"
 import tesco from "../../../public/img/tesco.jpeg"
+
 export const Formation = () => {
-    function handleClick(e){
+    function handleClick(e) {
         window.location.href = "https://tescoacalco.edomex.gob.mx/"
     }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        alert("Mensaje enviado con éxito!")
+    }
+
     return (
         <section className={style.wrapperMain}>
-            <div className={style.containerFormation}>
-                <h1>Formación</h1>
-                <div className={style.cardSchool} onClick={handleClick}>
-                    <div>
-                        <h2>TESCo: Tecnológico de Estudios Superiores de Coacalco.</h2>
-                        <p>Ing. Tecnologías de la Información y la Comunicación.</p>
-                        <p>Generación: 2017 - 2022</p>
+            <div className={style.formationSection}>
+                <div className={style.sectionHeader}>
+                    <span className={style.badge}>
+                        <span className={style.badgeDot}></span>
+                        Formación Académica
+                    </span>
+                </div>
+
+                <div className={style.educationCard} onClick={handleClick}>
+                    <div className={style.educationIcon}>
+                        <img src={tesco} alt="TESCo" />
                     </div>
-                    <img src={tesco} alt="Imagen Escuela" />
+                    <div className={style.educationContent}>
+                        <h3 className={style.educationTitle}>
+                            Tecnológico de Estudios Superiores de Coacalco
+                        </h3>
+                        <p className={style.educationDegree}>
+                            Ing. Tecnologías de la Información y la Comunicación
+                        </p>
+                        <p className={style.educationYears}>2017 - 2022</p>
+                    </div>
+                    <button className={style.arrowBtn}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+                <div className={style.educationCard2} onClick={handleClick}>
+                    <div className={style.educationIcon}>
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrjJ5oI-UQyJIU7pSOCKz2tD6T58EXUHFOLuVfRP9mP33fuJYmWQz8YnGWaMOnzMpklL66QPGodeAJrfSCHNBVQ5HwQtjhyIHLrlRxYpYp7fSo2vJO6lN1Th5aB6NgfbhxCCZDU=s680-w680-h510-rw" alt="CUVA" />
+                    </div>
+                    <div className={style.educationContent}>
+                        <h3 className={style.educationTitle}>
+                            Centro Universitario Valle de Anáhuac
+                        </h3>
+                        <p className={style.educationDegree}>
+                            Lic. Idiomas
+                        </p>
+                        <p className={style.educationYears}>2023 - En curso</p>
+                    </div>
+                    <button className={style.arrowBtn}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div className={style.headerContact} id="contact">
-                <h1>Contacto</h1>
-                <span>Por favor enviame un mensaje si te ha gustado mi trabajo, estoy disponible a nuevos retos.</span>
-            </div>
-            <div className={style.containerContact}>
-                <div className={style.contactInfo}>
-                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height={24}><path d="M256 352c-16.53 0-33.06-5.422-47.16-16.41L0 173.2V400C0 426.5 21.49 448 48 448h416c26.51 0 48-21.49 48-48V173.2l-208.8 162.5C289.1 346.6 272.5 352 256 352zM16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z" /></svg>
-                    <p>josue.cazares.10@gmail.com</p>
-                    <svg enable-background="new 0 0 48 48" height="32px" id="Layer_3" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9,0v48h30V34.375v-2.438V15v-2V0H9z M24,43.959c-1.104,0-2-0.896-2-2s0.896-2,2-2c1.105,0,2,0.896,2,2  S25.105,43.959,24,43.959z M35,15v16.938v2.438V36H13V4h22v9V15z" fill="#241F20" /></svg>
-                    <p>5538924729</p>
+
+            <div className={style.contactSection} id="contact">
+                <div className={style.contactHeader}>
+                    <div className={style.headerBadges}>
+                        <span className={style.badge}>
+                            <span className={style.badgeDot}></span>
+                            Mobile Developer
+                        </span>
+                        <span className={style.badgeAvailable}>
+                            <span className={style.badgeDotGreen}></span>
+                            Disponible para trabajar
+                        </span>
+                    </div>
+                    <h2 className={style.contactTitle}>¿Tienes una idea?</h2>
+                    <p className={style.contactDescription}>
+                        Si te ha gustado mi trabajo, puedes enviarme un correo para que te pongamos en contacto.
+                    </p>
                 </div>
-                <form className={style.contactForm}>
-                    <input type="text" placeholder="Ingresa tu nombre" required />
-                    <input type="email" placeholder="Ingresa tu email" required />
-                    <textarea name="message" placeholder="Ingresa tu mensaje" rows={5} required></textarea>
-                    <button type="submit">Enviar Mensaje</button>
+
+                <form className={style.contactForm} onSubmit={handleSubmit}>
+                    <div className={style.formRow}>
+                        <input
+                            type="text"
+                            placeholder="Nombre"
+                            className={style.formInput}
+                            required
+                        />
+                        <input
+                            type="email"
+                            placeholder="Correo"
+                            className={style.formInput}
+                            required
+                        />
+                    </div>
+                    <textarea
+                        placeholder="Mensaje"
+                        className={style.formTextarea}
+                        rows={6}
+                        required
+                    ></textarea>
+                    <button type="submit" className={style.submitBtn}>
+                        Enviar
+                    </button>
                 </form>
             </div>
         </section>

@@ -8,10 +8,10 @@
 }
 
 body {
-    background: #171717d9;
+    background: #f2f2f2;
     color: white;
     overflow: hidden;
     overflow-y: scroll;
-    font-family: 'Inter', sans-serif; /* Aplica la fuente globalmente al body */
+    font-family: 'Inter', sans-serif;
 }
 /* #56ac68e6 */
