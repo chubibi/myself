@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import styles from "./css/body.module.css"
-import { Link } from "react-scroll"
 import { Modal } from "../../components/Modal/Modal"
 import me from "../../../public/img/me.png"
 import { FloatingWhatsApp } from "react-floating-whatsapp"
@@ -18,17 +17,56 @@ export const Body = () => {
         setModalOpen(false)
     }
 
-    function handleClick(e) {
-        window.location.href = "https://www.linkedin.com/in/josu%C3%A9-isa%C3%ADas-cazares-p%C3%A9rez-2697481b7/"
-    }
+    async function copyEmail() {
+        const email = "josue.cazares.10@gmail.com"
 
-    function handleClickGit(e) {
-        window.location.href = "https://github.com/chubibi"
-    }
+        function fallbackCopy(text) {
+            try {
+                const ta = document.createElement("textarea")
+                ta.value = text
+                // evitar que se abra el teclado en móviles
+                ta.setAttribute("readonly", "")
+                ta.style.position = "absolute"
+                ta.style.left = "-9999px"
+                document.body.appendChild(ta)
 
-    function copyEmail() {
-        navigator.clipboard.writeText("tuemail@ejemplo.com")
-        alert("Email copiado al portapapeles")
+                // selección para iOS y demás
+                ta.select()
+                ta.setSelectionRange(0, ta.value.length)
+
+                const ok = document.execCommand("copy")
+                document.body.removeChild(ta)
+                return ok
+            } catch (e) {
+                console.error("fallbackCopy error:", e)
+                return false
+            }
+        }
+
+        function clearSelection() {
+            const sel = window.getSelection && window.getSelection()
+            if (sel && sel.rangeCount) sel.removeAllRanges()
+        }
+
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(email)
+            } else {
+                const ok = fallbackCopy(email)
+                if (!ok) throw new Error("fallback failed")
+            }
+            alert("Email copiado al portapapeles")
+        } catch (err) {
+            const ok = fallbackCopy(email)
+            if (ok) {
+                alert("Email copiado al portapapeles")
+            } else {
+                alert("No se pudo copiar el email. Por favor cópialo manualmente: " + email)
+            }
+            console.error("copyEmail error:", err)
+        } finally {
+            clearSelection()
+        }
     }
 
     return (

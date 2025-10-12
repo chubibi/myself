@@ -6,9 +6,24 @@ export const Formation = () => {
         window.location.href = "https://tescoacalco.edomex.gob.mx/"
     }
 
+    function handleClick2(e) {
+        window.location.href = "http://www.centrouniversitariovalledeanahuac.com.mx/"
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
-        alert("Mensaje enviado con éxito!")
+
+        const formData = new FormData(e.target)
+        const nombre = formData.get('nombre')
+        const correo = formData.get('correo')
+        const mensaje = formData.get('mensaje')
+
+        const subject = `Contacto desde Portfolio - Bienvenido: ${nombre}`
+        const body = `Nombre: ${nombre}%0D%0ACorreo: ${correo}%0D%0A%0D%0AMensaje:%0D%0A${mensaje}`
+
+        window.location.href = `mailto:josue.cazares.10@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`
+
+        e.target.reset()
     }
 
     return (
@@ -41,7 +56,7 @@ export const Formation = () => {
                         </svg>
                     </button>
                 </div>
-                <div className={style.educationCard2} onClick={handleClick}>
+                <div className={style.educationCard2} onClick={handleClick2}>
                     <div className={style.educationIcon}>
                         <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrjJ5oI-UQyJIU7pSOCKz2tD6T58EXUHFOLuVfRP9mP33fuJYmWQz8YnGWaMOnzMpklL66QPGodeAJrfSCHNBVQ5HwQtjhyIHLrlRxYpYp7fSo2vJO6lN1Th5aB6NgfbhxCCZDU=s680-w680-h510-rw" alt="CUVA" />
                     </div>
@@ -84,12 +99,14 @@ export const Formation = () => {
                 <form className={style.contactForm} onSubmit={handleSubmit}>
                     <div className={style.formRow}>
                         <input
+                            name="nombre"
                             type="text"
                             placeholder="Nombre"
                             className={style.formInput}
                             required
                         />
                         <input
+                            name="correo"
                             type="email"
                             placeholder="Correo"
                             className={style.formInput}
@@ -97,6 +114,7 @@ export const Formation = () => {
                         />
                     </div>
                     <textarea
+                        name="mensaje"
                         placeholder="Mensaje"
                         className={style.formTextarea}
                         rows={6}
