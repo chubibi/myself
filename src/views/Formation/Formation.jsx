@@ -58,7 +58,7 @@ export const Formation = () => {
                 </div>
                 <div className={style.educationCard2} onClick={handleClick2}>
                     <div className={style.educationIcon}>
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrjJ5oI-UQyJIU7pSOCKz2tD6T58EXUHFOLuVfRP9mP33fuJYmWQz8YnGWaMOnzMpklL66QPGodeAJrfSCHNBVQ5HwQtjhyIHLrlRxYpYp7fSo2vJO6lN1Th5aB6NgfbhxCCZDU=s680-w680-h510-rw" alt="CUVA" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-school"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" /><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" /></svg>
                     </div>
                     <div className={style.educationContent}>
                         <h3 className={style.educationTitle}>

@@ -5,13 +5,8 @@ import cv from "../../../public/CV/JC24.pdf"
 export const Modal = ({ isOpen, onClose }) => {
     if (!isOpen) return null
 
-    function handleDownloadCV() {
-        const link = document.createElement('a')
-        link.href = cv
-        link.download = "JC24.pdf"
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+    function handleSendWhatsApp() {
+        window.location.href = "https://wa.me/5538924729"
         onClose()
     }
 
@@ -34,16 +29,12 @@ export const Modal = ({ isOpen, onClose }) => {
                 <p className={styles.modalSubtitle}>Elige una opción para continuar</p>
 
                 <div className={styles.cardsContainer}>
-                    <div className={styles.actionCard} onClick={handleDownloadCV}>
-                        <div className={styles.iconWrapper}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
+                    <div className={styles.actionCard}>
+                        <div className={styles.iconWrapper} onClick={handleSendWhatsApp}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile-message"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M11 3h10v8h-3l-4 2v-2h-3l0 -8" /><path d="M15 16v4a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1h2" /><path d="M10 18v.01" /></svg>
                         </div>
-                        <h3>Descargar CV</h3>
-                        <p>Descarga mi currículum en formato PDF</p>
+                        <h3>Enviar WhatsApp</h3>
+                        <p>Mensaje directo</p>
                     </div>
 
                     <div className={styles.actionCard} onClick={handleSendEmail}>

@@ -1,36 +1,161 @@
 .bodySection {
     overflow: hidden;
-    width: 100vw;
-    max-width: 100%;
+    width: 100%;
+    max-width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    margin: 4rem auto;
-    color: black;
-    padding: 0 1rem;
+    padding: 80px 32px;
+    background-color: #fafafa;
+    /* Ligeramente diferente para separar visualmente */
+}
+
+.aboutContainer {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    margin-bottom: 80px;
+}
+
+.aboutImageContainer {
+    flex-shrink: 0;
+    width: 320px;
+    height: 400px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    background-color: #eee;
+}
+
+.aboutImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.aboutImageContainer:hover .aboutImage {
+    transform: scale(1.05);
+}
+
+.aboutText {
+    flex: 1;
+    text-align: left;
 }
 
 .skillTitle {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    display: block;
 }
 
 .descripcion {
-    font-weight: 400;
     font-size: 18px;
-    margin-bottom: 4rem;
-    line-height: 1.6;
-    color: #666;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.descripcion strong {
+    color: #000;
+    font-weight: 600;
+}
+
+.languageBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #eef2ff;
+    color: #4f46e5;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #e0e7ff;
 }
 
 .sectionTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0rem 0 2rem 0;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 40px 0 30px 0;
     color: #1a1a1a;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #000;
+    border-radius: 2px;
+}
+
+.certsContainer {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.certCard {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.certCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-color: #e0e0e0;
+}
+
+.certIcon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    color: #475569;
+}
+
+.certInfo {
+    text-align: left;
+}
+
+.certTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+
+.certId {
+    font-size: 13px;
+    color: #64748b;
+    font-family: monospace;
 }
 
 .carouselWrapper {
@@ -115,18 +240,43 @@
     color: #1a1a1a;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
+    .aboutContainer {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .aboutText {
+        text-align: center;
+    }
+
+    .aboutImageContainer {
+        width: 100%;
+        max-width: 280px;
+        height: 350px;
+    }
+
     .skillTitle {
-        font-size: 2rem;
+        font-size: 32px;
     }
 
     .descripcion {
         font-size: 16px;
-        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bodySection {
+        padding: 60px 20px;
+    }
+
+    .skillTitle {
+        font-size: 28px;
     }
 
     .sectionTitle {
-        font-size: 1.25rem;
+        font-size: 24px;
     }
 
     .skillCard {

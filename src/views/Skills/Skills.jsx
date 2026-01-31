@@ -1,4 +1,5 @@
 import style from "./css/skills.module.css"
+import me from "../../../public/img/skills.jpg"
 
 export const Skills = () => {
     const mainTechs = [
@@ -75,12 +76,53 @@ export const Skills = () => {
 
     return (
         <section className={style.bodySection} id="sobre-mi">
-            <span className={style.skillTitle}>Un Poco Sobre Mí</span>
-            <p className={style.descripcion}>
-                <strong>Ingeniero en Tecnologías de la Información y la Comunicación</strong>, con experiencia en desarrollo de software. <br />
-                Me apasiona el desarrollo móvil y el front-end pero siempre estoy dispuesto a superar nuevos retos. <br />
-                Actualmente estoy estudiando una licenciatura en idiomas
-            </p>
+            <div className={style.aboutContainer}>
+                <div className={style.aboutImageContainer}>
+                    <img src={me} alt="Josué Cazares" className={style.aboutImage} />
+                </div>
+                <div className={style.aboutText}>
+                    <span className={style.skillTitle}>Hablando de mi...</span>
+                    <p className={style.descripcion}>
+                        Soy <strong>Ingeniero en Tecnologías de la Información y la Comunicación</strong>, un apasionado por crear soluciones digitales que impacten positivamente la vida de las personas. <br /><br />
+                        Más allá del código, me considero una persona curiosa y en constante evolución. Creo firmemente que la comunicación es el puente más importante entre la tecnología y las personas.
+                    </p>
+                    <div className={style.languageBadge}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 5h7" />
+                            <path d="M9 3v2c0 4.418-2.239 8-5 8" />
+                            <path d="M5 9c-.003 2.144 2.952 3.908 6.73 4.41" />
+                            <path d="M20 19l-4-9-4 9" />
+                            <path d="M13 17h6" />
+                        </svg>
+                        Estudiando Licenciatura en Idiomas
+                    </div>
+                </div>
+            </div>
+
+            <h2 className={style.sectionTitle}>Certificaciones y Cursos</h2>
+            <div className={style.certsContainer}>
+                <div className={style.certCard}>
+                    <div className={style.certIcon}>
+                        <svg viewBox="0 0 256 256" preserveAspectRatio="xMidYMid"><defs><linearGradient x1="99.991%" y1="-.011%" x2=".01%" y2="100.01%" id="kotlin__a"><stop stopColor="#E44857" offset=".344%" /><stop stopColor="#C711E1" offset="46.89%" /><stop stopColor="#7F52FF" offset="100%" /></linearGradient></defs><path fill="url(#kotlin__a)" d="M256 256H0V0h256L128 127.949z" /></svg>
+                    </div>
+                    <div className={style.certInfo}>
+                        <h3 className={style.certTitle}>Bootcamp Android Developer</h3>
+                        <span className={style.certId}>Especialización en desarrollo nativo</span>
+                    </div>
+                </div>
+
+                <div className={style.certCard}>
+                    <div className={style.certIcon}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11.43 14.39a3 3 0 0 0-1.74-2.89L7 10l2.69-1.5a3 3 0 0 0 1.74-2.89V3l-3.33 2.1a1 1 0 0 1-1.07 0L3.69 3v2.61a3 3 0 0 0 1.74 2.89L8.12 10l-2.69 1.5a3 3 0 0 0-1.74 2.89V17l3.33-2.1a1 1 0 0 1 1.07 0l3.33 2.1v-2.61ZM12 12h10M12 7h10M12 17h10" />
+                        </svg>
+                    </div>
+                    <div className={style.certInfo}>
+                        <h3 className={style.certTitle}>Scrum Foundation Profesional Certificate SFPC</h3>
+                        <span className={style.certId}>ID: 78465851</span>
+                    </div>
+                </div>
+            </div>
 
             <h2 className={style.sectionTitle}>Mis Habilidades</h2>
             <div className={style.carouselWrapper}>

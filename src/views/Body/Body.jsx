@@ -71,7 +71,7 @@ export const Body = () => {
 
     return (
         <>
-            <section className={styles.headerSection}>
+            <section className={styles.headerSection} id="inicio">
                 <div className={styles.contentWrapper}>
                     <div className={styles.textContent}>
                         <div className={styles.headerBadges}>
@@ -88,7 +88,7 @@ export const Body = () => {
                         <h1 className={styles.title}>I'm Josué Cazares</h1>
 
                         <p className={styles.description}>
-                            Desarrollador móvil, desarrollo web.<br />
+                            Desarrollador móvil y desarrollo web.<br />
                             Más de 3 años de experiencia, graduado como <strong>Ingeniero en TIC's</strong>.
                         </p>
 
