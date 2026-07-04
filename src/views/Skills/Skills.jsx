@@ -1,5 +1,5 @@
 import style from "./css/skills.module.css"
-import me from "../../../public/img/skills.jpg"
+import me from "/img/josue.jpg"
 
 export const Skills = () => {
     const mainTechs = [

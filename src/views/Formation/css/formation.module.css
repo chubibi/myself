@@ -1,306 +1,525 @@
-.wrapperMain {
-    margin: 0 auto;
+/* ═══════════════════════════════════════════════════════════════
+   FORMATION SECTION — homologado con Body/Experience Design System
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ── */
+:root {
+    --form-accent: #34d399;
+    --form-accent2: #818cf8;
+    --form-text: #f0f4f8;
+    --form-muted: #8a9baa;
+    --form-subtle: #546470;
+    --form-border: rgba(255, 255, 255, 0.08);
+    --form-card-bg: rgba(8, 16, 22, 0.65);
+}
+
+/* ────────────────────────────────────────────────────────────
+   SECTION
+──────────────────────────────────────────────────────────── */
+
+.section {
+    position: relative;
     width: 100%;
-    max-width: 1200px;
-    padding: 4rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    align-items: center;
+    padding: var(--space-4xl) var(--space-md) var(--space-3xl);
+    overflow: hidden;
 }
 
-.formationSection {
+.sectionBg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgGlow {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 450px;
+    background: radial-gradient(ellipse at center,
+            rgba(52, 211, 153, 0.045) 0%,
+            rgba(129, 140, 248, 0.025) 50%,
+            transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────────
+   HEADER — mismo patrón que Experience
+──────────────────────────────────────────────────────────── */
+
+.header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+    max-width: 640px;
     width: 100%;
 }
 
-.sectionHeader {
-    margin-bottom: 2rem;
+.eyebrow {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    color: var(--form-accent);
+    margin-bottom: var(--space-md);
+    position: relative;
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: #f5f5f5;
-    border-radius: 50px;
-    font-size: 14px;
-    color: #666;
-    font-weight: 500;
+.eyebrow::before,
+.eyebrow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 1px;
+    background: rgba(52, 211, 153, 0.35);
 }
 
-.badgeDot {
-    width: 8px;
-    height: 8px;
-    background-color: #999;
-    border-radius: 50%;
+.eyebrow::before {
+    right: calc(100% + 12px);
 }
 
-.badgeAvailable {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: #d4f4dd;
-    border-radius: 50px;
-    font-size: 13px;
-    color: #2d6a3e;
-    font-weight: 500;
+.eyebrow::after {
+    left: calc(100% + 12px);
 }
 
-.badgeDotGreen {
-    width: 8px;
-    height: 8px;
-    background-color: #2d6a3e;
-    border-radius: 50%;
+.sectionTitle {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--form-text);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--space-md) 0;
 }
 
-.educationCard {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
+.titleEm {
+    font-style: italic;
+    color: var(--form-accent);
+}
+
+.sectionSub {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--form-muted);
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ────────────────────────────────────────────────────────────
+   CARDS GRID
+──────────────────────────────────────────────────────────── */
+
+.cardsGrid {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-3xl);
+}
+
+/* ────────────────────────────────────────────────────────────
+   EDUCATION CARD — glassmorphism
+──────────────────────────────────────────────────────────── */
+
+.card {
+    position: relative;
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.educationCard2 {
-    background: white;
-    margin-top: 16px;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-xl);
     border-radius: 20px;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.educationCard:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    transform: translateY(-4px);
-}
-
-.educationCard2:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    transform: translateY(-4px);
-}
-
-.educationIcon {
-    width: 80px;
-    height: 80px;
-    border-radius: 16px;
+    background: var(--form-card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--form-border);
     overflow: hidden;
-    flex-shrink: 0;
-    background: #f5f5f5;
-    color: #1a1a1a;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform, border-color;
+}
+
+/* Top accent line (usa CSS custom property --card-accent del inline style) */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--card-accent, #34d399) 40%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover {
+    border-color: color-mix(in srgb, var(--card-accent, #34d399) 30%, transparent);
+    box-shadow:
+        0 20px 56px rgba(0, 0, 0, 0.48),
+        0 0 0 1px color-mix(in srgb, var(--card-accent, #34d399) 8%, transparent) inset;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* Glow radial en hover */
+.cardGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%,
+            color-mix(in srgb, var(--card-accent, #34d399) 10%, transparent) 0%,
+            transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card:hover .cardGlow {
+    opacity: 1;
+}
+
+/* ── Card Top (icon + short name) ── */
+
+.cardTop {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.iconWrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
+    transition: background 0.28s ease, border-color 0.28s ease;
+    overflow: hidden;
 }
 
-.educationIcon img {
+.card:hover .iconWrap {
+    background: color-mix(in srgb, var(--card-accent, #34d399) 12%, transparent);
+    border-color: color-mix(in srgb, var(--card-accent, #34d399) 30%, transparent);
+}
+
+.iconImg {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    display: block;
 }
 
-.educationContent {
+.shortName {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--form-subtle);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 4px 10px;
+    border-radius: 9999px;
+}
+
+/* ── Card Content ── */
+
+.cardContent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     flex: 1;
-    text-align: left;
 }
 
-.educationTitle {
-    font-size: 1.25rem;
+.cardSchool {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
     font-weight: 600;
-    color: #1a1a1a;
-    margin: 0 0 0.5rem 0;
-}
-
-.educationDegree {
-    font-size: 1rem;
-    color: #666;
-    margin: 0 0 0.25rem 0;
-}
-
-.educationYears {
-    font-size: 0.9rem;
-    color: #999;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--card-accent, #34d399) 80%, white 20%);
     margin: 0;
 }
 
-.arrowBtn {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #f5f5f5;
-    border: none;
+.cardDegree {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 700;
+    color: var(--form-text);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 4px 0 0;
+}
+
+.cardSpecialty {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    color: var(--form-muted);
+    font-weight: 500;
+    margin: 6px 0 0;
+}
+
+.cardPeriod {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: var(--form-subtle);
+    margin: 4px 0 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #666;
+    gap: 6px;
+}
+
+.cardPeriod::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--form-subtle);
     flex-shrink: 0;
 }
 
-.arrowBtn:hover {
-    background: #e5e5e5;
-    color: #1a1a1a;
-}
+/* ── Tags ── */
 
-.contactSection {
-    background: white;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.contactHeader {
-    margin-bottom: 2rem;
-}
-
-.headerBadges {
+.tagRow {
+    position: relative;
+    z-index: 1;
     display: flex;
-    gap: 12px;
-    margin-bottom: 1.5rem;
     flex-wrap: wrap;
+    gap: 6px;
 }
 
-.contactTitle {
-    font-size: 2.5rem;
+.tag {
+    padding: 4px 11px;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--form-subtle);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    letter-spacing: 0.03em;
+    transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.card:hover .tag {
+    color: color-mix(in srgb, var(--card-accent, #34d399) 70%, white 30%);
+    border-color: color-mix(in srgb, var(--card-accent, #34d399) 25%, transparent);
+    background: color-mix(in srgb, var(--card-accent, #34d399) 6%, transparent);
+}
+
+/* ── Footer CTA ── */
+
+.cardFooter {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.ctaLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--form-subtle);
+    transition: color 0.22s ease, gap 0.22s ease;
+}
+
+.card:hover .ctaLink {
+    color: color-mix(in srgb, var(--card-accent, #34d399) 85%, white 15%);
+    gap: 10px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   CERTS SECTION
+──────────────────────────────────────────────────────────── */
+
+.certsSection {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+}
+
+.certsLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
     font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 1rem 0;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: white;
+    margin: 0 0 var(--space-md) 0;
 }
 
-.contactDescription {
-    font-size: 1.1rem;
-    color: #666;
-    margin: 0;
-}
-
-.contactForm {
+.certsList {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-sm);
 }
 
-.formRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.formInput,
-.formTextarea {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    background: #f5f5f5;
-    border: 2px solid transparent;
+.certItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     border-radius: 12px;
-    font-size: 1rem;
-    color: #1a1a1a;
-    transition: all 0.3s ease;
-    font-family: inherit;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.22s ease, background 0.22s ease;
 }
 
-.formInput::placeholder,
-.formTextarea::placeholder {
-    color: #999;
+.certItem:hover {
+    border-color: rgba(52, 211, 153, 0.18);
+    background: rgba(52, 211, 153, 0.04);
 }
 
-.formInput:focus,
-.formTextarea:focus {
-    outline: none;
-    border-color: #1a1a1a;
-    background: #fff;
+.certIcon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1;
 }
 
-.formTextarea {
-    resize: vertical;
-    min-height: 150px;
+.certContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
 }
 
-.submitBtn {
-    background: #000;
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 1rem;
+.certTitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 0.5rem;
+    color: var(--form-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.submitBtn:hover {
-    background: #333;
-    transform: translateY(-2px);
+.certOrg {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: white;
 }
+
+.certShort {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--form-accent);
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    padding: 3px 10px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768px)
+═══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-    .wrapperMain {
-        padding: 2rem 1rem;
-        gap: 3rem;
+    .section {
+        padding: var(--space-3xl) var(--space-lg) var(--space-3xl);
     }
 
-    .educationCard {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-    }
-
-    .educationContent {
-        text-align: center;
-    }
-
-    .educationTitle {
-        font-size: 1.1rem;
-    }
-
-    .educationDegree {
-        font-size: 0.95rem;
-    }
-
-    .contactSection {
-        padding: 2rem 1.5rem;
-    }
-
-    .contactTitle {
-        font-size: 2rem;
-    }
-
-    .contactDescription {
-        font-size: 1rem;
-    }
-
-    .formRow {
+    .cardsGrid {
         grid-template-columns: 1fr;
-    }
-
-    .headerBadges {
-        justify-content: center;
+        max-width: 520px;
     }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile (480px)
+═══════════════════════════════════════════════════════════════ */
+
 @media (max-width: 480px) {
-    .contactTitle {
-        font-size: 1.75rem;
+    .section {
+        padding: var(--space-2xl) var(--space-md) var(--space-3xl);
     }
 
-    .educationIcon {
-        width: 70px;
-        height: 70px;
+    .header {
+        margin-bottom: var(--space-2xl);
     }
 
-    .formInput,
-    .formTextarea {
-        padding: 0.875rem 1rem;
-        font-size: 0.95rem;
+    .card {
+        padding: var(--space-lg);
+    }
+
+    .certItem {
+        padding: var(--space-md);
+    }
+
+    .certTitle {
+        white-space: normal;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+        display: none;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ACCESSIBILITY — Reduced Motion
+───────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: none !important;
+    }
+
+    .card::after,
+    .cardGlow {
+        display: none;
+    }
+
+    .tag,
+    .ctaLink,
+    .certItem {
+        transition: none;
+    }
+
+    .bgGlow {
+        display: none;
     }
 }

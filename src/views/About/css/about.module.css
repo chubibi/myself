@@ -1,0 +1,228 @@
+/* ────────────────────────────────
+   SECTION
+──────────────────────────────── */
+
+.section {
+    width: 100%;
+    padding: 120px 24px; /* Mayor respiro vertical (White space) */
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    /* Patrón de lectura F/Z: texto domina a la izquierda */
+    grid-template-columns: 1fr 0.8fr;
+    align-items: center;
+    gap: 80px;
+}
+
+/* ────────────────────────────────
+   TEXTO (columna izquierda)
+──────────────────────────────── */
+
+.textCol {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Eyebrow - Para guiar el ojo primero aquí (jerarquía visual) */
+.eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: #6ee7b7; /* Un verde pastel que contrasta mejor con el verde oscuro del fondo */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Título Serif */
+.title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+}
+
+/* Lead (subtítulo) */
+.lead {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.95); /* Contraste alto para evitar fatiga */
+    font-weight: 500;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+/* Párrafos de cuerpo - Legibilidad mejorada */
+.body {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75); /* Blanco translúcido, suave para los ojos sobre fondo oscuro */
+    line-height: 1.8; /* Mayor interlineado para descanso visual */
+    margin-bottom: 20px;
+}
+
+.body:last-of-type {
+    margin-bottom: 40px;
+}
+
+.body strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* CTA: Botón principal de la sección */
+.btnOutline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    border: 2px solid #ffffff; /* Borde más visible */
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start;
+}
+
+.btnOutline:hover {
+    background: #ffffff; /* Al hacer hover se vuelve sólido, fuerte CTA */
+    color: #064e3b; /* Color del texto combinando con el gradiente oscuro */
+    transform: translateY(-2px);
+}
+
+/* ────────────────────────────────
+   FOTO / POLAROID (columna derecha)
+──────────────────────────────── */
+
+.photoCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.polaroidWrap {
+    position: relative;
+    padding-bottom: 32px;
+    padding-right: 16px;
+}
+
+/* Marco polaroid */
+.polaroid {
+    background: #ffffff;
+    padding: 10px 10px 36px 10px;
+    border-radius: 4px;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suavizada para evitar cansancio visual */
+    transform: rotate(3deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    width: clamp(240px, 35vw, 340px); /* Un poco más ancha */
+}
+
+.polaroidWrap:hover .polaroid {
+    transform: rotate(0deg) translateY(-8px);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.5),
+        0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Foto real (cuando exista) */
+.photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+    filter: contrast(1.05) saturate(1.1); /* Leve toque visual para compensar el fondo de contraste */
+}
+
+/* ── Etiqueta verde flotante ── */
+.nameTag {
+    position: absolute;
+    bottom: 15px;
+    right: -10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 16px 6px 12px;
+    background: #ffffff; /* Blanco resalta increíblemente bien sobre el gradiente oscuro */
+    color: #064e3b; /* Texto oscuro */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.02em;
+    transform: rotate(-2deg);
+}
+
+.nameTag::before {
+    content: '▶';
+    font-size: 0.6rem;
+    margin-right: -2px;
+    opacity: 0.8;
+}
+
+/* ────────────────────────────────
+   RESPONSIVE
+──────────────────────────────── */
+
+/* Tablet apaisado */
+@media (max-width: 960px) {
+    .inner {
+        gap: 50px;
+    }
+    .title {
+        font-size: 2.75rem;
+    }
+}
+
+/* Tablet retrato / mobile: 1 columna, foto arriba */
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 20px;
+    }
+    .inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .photoCol {
+        order: -1;
+    }
+    .polaroid {
+        width: clamp(200px, 60vw, 300px);
+    }
+    .title {
+        font-size: 2.5rem;
+    }
+    .btnOutline {
+        align-self: stretch;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .polaroid,
+    .polaroidWrap:hover .polaroid,
+    .btnOutline {
+        transition: none;
+        transform: rotate(3deg);
+    }
+    .polaroidWrap:hover .polaroid {
+        transform: rotate(3deg);
+    }
+}

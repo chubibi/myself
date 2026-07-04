@@ -8,10 +8,9 @@
 }
 
 body {
-    background: #f2f2f2;
-    color: white;
-    overflow: hidden;
+    background: linear-gradient(to right, #059669, #064e3b, #0C1821);
+    color: black;
+    overflow-x: hidden;
     overflow-y: scroll;
     font-family: 'Inter', sans-serif;
 }
-/* #56ac68e6 */
