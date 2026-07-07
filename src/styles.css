@@ -14,3 +14,9 @@ body {
     overflow-y: scroll;
     font-family: 'Inter', sans-serif;
 }
+
+/* Evitar zoom en inputs en iOS Safari para el FloatingWhatsApp */
+.custom-whatsapp input,
+.custom-whatsapp textarea {
+    font-size: 16px !important;
+}

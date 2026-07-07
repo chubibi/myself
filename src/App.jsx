@@ -28,6 +28,7 @@ export default function App() {
                 darkMode={true}
                 allowClickAway={true}
                 allowEsc={true}
+                className="custom-whatsapp"
             />
         </div>
     )

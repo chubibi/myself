@@ -2,8 +2,9 @@ import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import styles from './css/experience.module.css'
 import vde from '/img/vde.jpeg'
-import iphone from '/img/Iphone.png'
+import zebra from '/img/zebra.png'
 import pixel from '/img/pixel.png'
+import cuvawebsite from '/img/cuvawebsite.png'
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -11,7 +12,7 @@ const JOBS = [
     {
         id: 1,
         company: 'VDE Suite Latam',
-        logo: vde,
+        logo: pixel,
         role: 'Tech Lead Frontend',
         period: 'Mar 2025 – 2026',
         duration: '1 año',
@@ -67,7 +68,7 @@ const PROJECTS = [
         title: 'App de Control de Asistencias',
         stack: 'React Native + Expo',
         period: '2025',
-        image: iphone,
+        image: vde,
         description:
             'App móvil multiplataforma para digitalizar el sistema de check-in de la oficina.',
         achievements: [
@@ -82,7 +83,7 @@ const PROJECTS = [
         title: 'Sistema de Inventarios Warehouse',
         stack: 'React + REST API',
         period: '2023 – 2024',
-        image: pixel,
+        image: zebra,
         description:
             'Plataforma web de gestión de inventarios integrada con dispositivos industriales Zebra.',
         achievements: [
@@ -277,6 +278,30 @@ export const Experience = () => {
                 </p>
             </motion.header>
 
+            {/* proyecto de página web */}
+            <div className={styles.featuredProjectWrapper}>
+                <a
+                    href="https://cuva-website-c5dae.web.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.featuredProject}
+                >
+                    <div className={styles.featuredContent}>
+                        <span className={styles.featuredEyebrow}>PROYECTO DESTACADO</span>
+                        <h3 className={styles.featuredTitle}>Página Web Escolar</h3>
+                        <p className={styles.featuredDesc}>
+                            Plataforma educativa con un diseño moderno, responsivo y dinámico, creada para mejorar la comunicación y gestión escolar.
+                        </p>
+                        <span className={styles.featuredLinkText}>
+                            Visitar sitio web <span aria-hidden="true">&rarr;</span>
+                        </span>
+                    </div>
+                    <div className={styles.featuredImageWrapper}>
+                        <img src={cuvawebsite} alt="Vista previa de la Página Web Escolar" className={styles.featuredImage} />
+                    </div>
+                </a>
+            </div>
+
             {/* Jobs */}
             <div className={styles.jobsList} aria-label="Historial de empleos">
                 {JOBS.map((job, i) => (
@@ -305,7 +330,6 @@ export const Experience = () => {
                     ))}
                 </div>
             </motion.div>
-
         </section>
     )
 }

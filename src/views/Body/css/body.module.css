@@ -126,7 +126,7 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    max-width: 680px;
+    max-width: 980px;
     gap: 0;
 }
 
@@ -243,7 +243,6 @@
     font-weight: 700;
     line-height: 1.1;
     color: var(--color-text);
-    letter-spacing: -0.025em;
     margin-bottom: var(--space-md);
     margin-top: 0;
     padding: 0;
