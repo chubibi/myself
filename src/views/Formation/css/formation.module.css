@@ -7,8 +7,8 @@
     --form-accent: #34d399;
     --form-accent2: #818cf8;
     --form-text: #f0f4f8;
-    --form-muted: #8a9baa;
-    --form-subtle: #546470;
+    --form-muted: #f0f4f8;
+    --form-subtle: #f0f4f8;
     --form-border: rgba(255, 255, 255, 0.08);
     --form-card-bg: rgba(8, 16, 22, 0.65);
 }
