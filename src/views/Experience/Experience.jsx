@@ -5,6 +5,7 @@ import vde from '/img/vde.jpeg'
 import zebra from '/img/zebra.png'
 import pixel from '/img/pixel.png'
 import cuvawebsite from '/img/cuvawebsite.png'
+import apptusApp from '/img/apptus.jpeg'
 
 /* ── Data ─────────────────────────────────────────────────── */
 
@@ -288,7 +289,7 @@ export const Experience = () => {
                 >
                     <div className={styles.featuredContent}>
                         <span className={styles.featuredEyebrow}>PROYECTO DESTACADO</span>
-                        <h3 className={styles.featuredTitle}>Página Web Escolar</h3>
+                        <h3 className={styles.featuredTitle}>CUVA</h3>
                         <p className={styles.featuredDesc}>
                             Plataforma educativa con un diseño moderno, responsivo y dinámico, creada para mejorar la comunicación y gestión escolar.
                         </p>
@@ -298,6 +299,70 @@ export const Experience = () => {
                     </div>
                     <div className={styles.featuredImageWrapper}>
                         <img src={cuvawebsite} alt="Vista previa de la Página Web Escolar" className={styles.featuredImage} />
+                    </div>
+                </a>
+            </div>
+
+            {/* proyecto aptus app */}
+            <div className={styles.apptusWrapper}>
+                <a
+                    href="https://github.com/chubibi/Apptus#-aptus--interactive-mobile-engineer-portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.apptusProject}
+                    aria-labelledby="apptus-title"
+                >
+                    <div className={styles.apptusContent}>
+                        <div className={styles.badgeRow}>
+                            <span className={styles.statusBadge}>
+                                <span className={styles.pulseDot} aria-hidden="true" />
+                                Proyecto más reciente
+                            </span>
+                            <span className={styles.devBadge}>En desarrollo</span>
+                        </div>
+
+                        <span className={styles.apptusSubtitle}>React Native + Expo</span>
+                        <h3 id="apptus-title" className={styles.apptusTitle}>
+                            Apptus <em className={styles.apptusTitleEm}>Mobile</em>
+                        </h3>
+
+                        <p className={styles.apptusDesc}>
+                            Aplicación móvil desarrollada para consolidar mi portafolio de habilidades. Enfocada en rendimiento nativo, arquitectura limpia y flujos de usuario optimizados.
+                        </p>
+
+                        <div className={styles.skillsSection}>
+                            <ul className={styles.achievementsList} aria-label="Aspectos clave de Apptus">
+                                <li className={styles.achievement}>
+                                    <IconCheck color="#a78bfa" />
+                                    <span>Navegación gestual fluida (React Navigation)</span>
+                                </li>
+                                <li className={styles.achievement}>
+                                    <IconCheck color="#a78bfa" />
+                                    <span>Estado global reactivo con Zustand</span>
+                                </li>
+                                <li className={styles.achievement}>
+                                    <IconCheck color="#a78bfa" />
+                                    <span>CI/CD y actualizaciones OTA via EAS</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className={styles.tagRow} role="list" aria-label="Tecnologías usadas en Apptus">
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">React Native</span>
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">Expo</span>
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">Zustand</span>
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">TanStack Query</span>
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">UI/UX Mobile</span>
+                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">EAS CLI</span>
+                        </div>
+
+                        <span className={styles.featuredLinkText}>
+                            Ver repositorio del proyecto <span aria-hidden="true">&rarr;</span>
+                        </span>
+                    </div>
+
+                    <div className={styles.apptusImageWrapper}>
+                        <img src={apptusApp} alt="Banner descriptivo de la aplicación móvil Apptus" className={styles.apptusImage} />
                     </div>
                 </a>
             </div>
