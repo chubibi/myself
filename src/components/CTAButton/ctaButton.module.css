@@ -1,0 +1,126 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-height: 48px;
+    padding: 0 var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: var(--fs-control);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color var(--dur-base) var(--ease-out),
+        border-color var(--dur-base) var(--ease-out),
+        color var(--dur-base) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out);
+}
+
+.sm {
+    min-height: 40px;
+    padding: 0 var(--space-2);
+}
+
+.icon {
+    display: inline-flex;
+    transition: transform var(--dur-base) var(--ease-out);
+}
+
+.button:hover .icon {
+    transform: translateX(3px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ── Primary ── */
+.primary {
+    background: var(--beacon-orange);
+    color: var(--console-black);
+}
+
+.primary:hover {
+    background: var(--orange-300);
+}
+
+.primary:active {
+    background: var(--orange-700);
+    color: var(--bone);
+}
+
+/* ── Secondary ── */
+.secondary {
+    background: transparent;
+    border-color: var(--divider);
+    color: var(--bone);
+}
+
+.secondary:hover {
+    border-color: var(--bone);
+}
+
+.secondary:active {
+    background: var(--carbon-well);
+}
+
+/* ── Ghost ── */
+.ghost {
+    background: transparent;
+    color: var(--text-dim);
+    padding-left: var(--space-1);
+    padding-right: var(--space-1);
+}
+
+.ghost:hover {
+    color: var(--bone);
+}
+
+/* ── Light: superficie bone sobre fondos oscuros ── */
+.light {
+    background: var(--bone);
+    color: var(--console-black);
+}
+
+.light:hover {
+    background: #FFFFFF;
+}
+
+.light:active {
+    background: #D9D9D9;
+}
+
+/* ── Ink: acción oscura sobre paneles bone ── */
+.ink {
+    background: var(--night-floor);
+    color: var(--bone);
+}
+
+.ink:hover {
+    background: var(--carbon-well);
+}
+
+.ink:active {
+    background: var(--console-black);
+}
+
+.leading {
+    display: inline-flex;
+}
+
+.leading img {
+    width: 18px;
+    height: 18px;
+}

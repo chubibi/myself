@@ -1,22 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+/* ==========================================================================
+   Dispatch Design System — tokens globales
+   Fuente única de verdad para color, tipografía, espaciado, radios y motion.
+   Los CSS Modules consumen estas variables; no dupliques valores HEX.
+   ========================================================================== */
 
-* {
+:root {
+    /* ── Paleta ─────────────────────────────────────────────── */
+    --night-floor: #101010;   /* fondo principal oscuro */
+    --carbon-well: #1D1A18;   /* superficies y paneles secundarios */
+    --bone: #EEEEEE;          /* fondos claros / texto de alto contraste */
+    --beacon-orange: #EE6018; /* CTA, indicadores activos, acentos */
+    --charge-green: #A0CA92;  /* estados positivos / disponibilidad */
+    --divider: #3D3A39;       /* bordes 1px y separadores */
+    --console-black: #0D0D0D; /* controles y superficies profundas */
+    --muted: #8A8380;         /* texto secundario sobre oscuro (≥14px) */
+    --orange-300: #F49A6C;
+    --orange-700: #A8410C;
+
+    /* Texto secundario sobre oscuro con contraste AA para tamaños pequeños */
+    --text-dim: #B5AEAA;
+
+    /* ── Tipografía ─────────────────────────────────────────── */
+    --font-sans: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+    --fs-hero: clamp(2.5rem, 1.2rem + 5.4vw, 5.5rem);      /* 40 → 88px */
+    --fs-section: clamp(2.125rem, 1.5rem + 2.6vw, 3.5rem); /* 34 → 56px */
+    --fs-subhead: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem);/* 26 → 36px */
+    --fs-kicker: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);    /* 18 → 24px */
+    --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);     /* 16 → 18px */
+    --fs-small: 0.8125rem;                                 /* 13px */
+    --fs-control: 0.875rem;                                /* 14px */
+
+    --tracking-tight: -0.035em;
+    --tracking-snug: -0.02em;
+    --tracking-mono: 0.06em;
+
+    /* ── Espaciado (múltiplos de 8) ─────────────────────────── */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+
+    /* ── Forma ──────────────────────────────────────────────── */
+    --radius-lg: 20px;  /* superficies principales */
+    --radius-md: 10px;  /* imágenes / módulos secundarios */
+    --radius-sm: 3px;   /* controles compactos */
+    --border: 1px solid var(--divider);
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    --container: 1280px;
+    --gutter: clamp(16px, 4vw, 48px);
+    --header-h: 64px;
+
+    /* ── Motion ─────────────────────────────────────────────── */
+    --dur-fast: 150ms;
+    --dur-base: 200ms;
+    --dur-slow: 250ms;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + var(--space-2));
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    background: linear-gradient(to right, #059669, #064e3b, #0C1821);
-    color: black;
+    background: var(--night-floor);
+    color: var(--bone);
     overflow-x: hidden;
-    overflow-y: scroll;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+::selection {
+    background: var(--beacon-orange);
+    color: var(--console-black);
+}
+
+:focus-visible {
+    outline: 2px solid var(--beacon-orange);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* Enlace de salto para usuarios de teclado */
+.skip-link {
+    position: absolute;
+    left: var(--space-2);
+    top: -100px;
+    z-index: 1000;
+    padding: var(--space-1) var(--space-2);
+    background: var(--beacon-orange);
+    color: var(--console-black);
+    font-size: var(--fs-control);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+    top: var(--space-1);
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* Evitar zoom en inputs en iOS Safari para el FloatingWhatsApp */
 .custom-whatsapp input,
 .custom-whatsapp textarea {
     font-size: 16px !important;
+}
+
+main:focus {
+    outline: none;
 }

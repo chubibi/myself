@@ -1,0 +1,40 @@
+.label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-bottom: var(--space-2);
+    border-bottom: var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--fs-small);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.index {
+    color: var(--beacon-orange);
+}
+
+.text {
+    color: var(--bone);
+    white-space: nowrap;
+}
+
+.meta {
+    margin-left: auto;
+    text-align: right;
+}
+
+/* Variante sobre paneles claros (bone) */
+.label[data-tone='light'] {
+    border-bottom-color: rgba(16, 16, 16, 0.18);
+    color: #55504D;
+}
+
+.label[data-tone='light'] .text {
+    color: var(--night-floor);
+}
+
+.label[data-tone='light'] .index {
+    color: var(--orange-700);
+}

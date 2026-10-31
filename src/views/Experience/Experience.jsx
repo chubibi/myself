@@ -1,400 +1,104 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'motion/react'
 import styles from './css/experience.module.css'
-import vde from '/img/vde.jpeg'
-import zebra from '/img/zebra.png'
-import pixel from '/img/pixel.png'
-import cuvawebsite from '/img/cuvawebsite.png'
-import apptusApp from '/img/apptus.jpeg'
+import { JOBS, STACK, duration, formatMonth } from '../../data/experience'
+import { getProject } from '../../data/projects'
+import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
+import { StatusIndicator } from '../../components/StatusIndicator/StatusIndicator'
 
-/* ── Data ─────────────────────────────────────────────────── */
+/*
+ * Experiencia — patrón de lectura "layer-cake":
+ * cada puesto repite la misma estructura (fecha → rol → empresa → 2-3 viñetas → stack)
+ * para que se pueda escanear de arriba abajo en móvil sin leer párrafos.
+ */
 
-const JOBS = [
-    {
-        id: 1,
-        company: 'VDE Suite Latam',
-        logo: pixel,
-        role: 'Tech Lead Frontend',
-        period: 'Mar 2025 – 2026',
-        duration: '1 año',
-        location: 'Edo. Méx, México',
-        description:
-            'Responsable de estructurar reglas de negocio, planificar el Roadmap y llevar un producto de cero a un ecosistema web completo.',
-        achievements: [
-            'Diseñé e implementé la arquitectura base con React + Vite + Tailwind CSS para el MVP.',
-            'Lideré el desarrollo de la app móvil de control de asistencias con React Native + Expo.',
-            'Implementé distribución vía Firebase App Distribution, digitalizando el check-in de la oficina.',
-        ],
-        tags: ['React', 'Vite', 'React Native', 'Expo', 'Tailwind CSS', 'Tech Lead'],
-        accent: 'work',
-    },
-    {
-        id: 2,
-        company: 'BAACC Systems S.A. de C.V.',
-        role: 'Full Stack Engineer',
-        period: 'Abr 2023 – Nov 2024',
-        duration: '1 año 7 meses',
-        location: 'Edo. Méx, México',
-        description:
-            'Full Stack Engineer en proyectos logísticos: solución integrada al sistema de inventarios y MVP de plataforma de fletes.',
-        achievements: [
-            'App móvil para handhelds Zebra: conteo de racks, salida de mercancía y actualización de inventario.',
-            'Sistema de inventarios Warehouse con React para empresa del sector automotriz.',
-            'Diseñé UI/UX, planeé el MVP y construí servicios API REST de extremo a extremo.',
-        ],
-        tags: ['React', 'React Native', 'Android', 'Kotlin', 'REST API', 'Full Stack'],
-        accent: 'work',
-    },
-    {
-        id: 3,
-        company: 'Elektra Ecommerce · Grupo Salinas',
-        role: 'Android Developer',
-        period: 'Ago 2022 – Feb 2023',
-        duration: '7 meses',
-        location: 'CDMX, México',
-        description:
-            'Junior Android Developer con foco en calidad post-lanzamiento: monitoreo de crashes, coordinación con QA y hotfixes.',
-        achievements: [
-            'Monitoreo post-lanzamiento con Firebase Crashlytics: identifiqué y categoricé errores en producción.',
-            'Coordiné con QA la validación de fallos críticos y resolví incidencias técnicas de forma autónoma.',
-        ],
-        tags: ['Android Nativo', 'Kotlin', 'Firebase', 'Crashlytics', 'QA'],
-        accent: 'work',
-    },
-]
-
-const PROJECTS = [
-    {
-        id: 4,
-        title: 'App de Control de Asistencias',
-        stack: 'React Native + Expo',
-        period: '2025',
-        image: vde,
-        description:
-            'App móvil multiplataforma para digitalizar el sistema de check-in de la oficina.',
-        achievements: [
-            'Arquitectura MVVM con Zustand y TanStack Query para sincronización en tiempo real.',
-            'Distribución vía Firebase App Distribution sin tiendas.',
-            'CI/CD y actualizaciones OTA con Expo EAS Build.',
-        ],
-        tags: ['React Native', 'Expo', 'Zustand', 'Firebase', 'MVVM'],
-    },
-    {
-        id: 5,
-        title: 'Sistema de Inventarios Warehouse',
-        stack: 'React + REST API',
-        period: '2023 – 2024',
-        image: zebra,
-        description:
-            'Plataforma web de gestión de inventarios integrada con dispositivos industriales Zebra.',
-        achievements: [
-            'Interfaz responsiva para control de stock, entradas y salidas de almacén.',
-            'Integración con app móvil Zebra para sincronización en tiempo real.',
-            'UI/UX optimizada para operadores de almacén con flujos de escaneo.',
-        ],
-        tags: ['React', 'REST API', 'UI/UX', 'Warehouse', 'Zebra'],
-    },
-]
-
-/* ── Icons ─────────────────────────────────────────────────── */
-
-const IconCheck = ({ color = '#4ade80' }) => (
-    <svg width="14" height="14" viewBox="0 0 17 17" fill="none" aria-hidden="true" focusable="false">
-        <circle cx="8.5" cy="8.5" r="8" stroke={`${color}55`} strokeWidth="1" />
-        <path d="M5 8.5l2.5 2.5L12 6" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-)
-
-const IconPin = () => (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-        <circle cx="12" cy="10" r="3" />
-    </svg>
-)
-
-const IconClock = () => (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-    </svg>
-)
-
-/* ── Variants ────────────────────────────────────────────────── */
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (i = 0) => ({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.07 },
-    }),
+function StackCard() {
+    return (
+        <section className={styles.stackCard} aria-labelledby="stack-title">
+            <h3 id="stack-title" className={styles.stackTitle}>Stack principal</h3>
+            <dl className={styles.stackList}>
+                {STACK.map(group => (
+                    <div key={group.area} className={styles.stackRow}>
+                        <dt className={styles.stackArea}>{group.area}</dt>
+                        <dd>
+                            <ul className={styles.stackItems}>
+                                {group.items.map(item => <li key={item}>{item}</li>)}
+                            </ul>
+                        </dd>
+                    </div>
+                ))}
+            </dl>
+        </section>
+    )
 }
 
-/* ── Job Card — full width horizontal ───────────────────────── */
-
-function JobCard({ item, index }) {
-    const ref = useRef(null)
-    const inView = useInView(ref, { once: true, margin: '-60px' })
+function Job({ job }) {
+    const current = job.end === null
+    const projects = job.projects.map(getProject).filter(Boolean)
 
     return (
-        <motion.article
-            ref={ref}
-            className={styles.jobCard}
-            custom={index}
-            variants={fadeUp}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            aria-labelledby={`job-${item.id}`}
-        >
-            {/* Accent bar izquierda */}
-            <div className={styles.accentBar} aria-hidden="true" />
+        <li className={styles.job} data-current={current || undefined}>
+            <span className={styles.dot} aria-hidden="true" />
 
-            {/* Columna izquierda — info fija */}
-            <div className={styles.jobLeft}>
-                {item.logo && (
-                    <div className={styles.logoContainer}>
-                        <img src={item.logo} alt={`Logo de ${item.company}`} className={styles.logoImg} />
-                    </div>
-                )}
-                <span className={styles.jobCompany}>{item.company}</span>
-                <h3 id={`job-${item.id}`} className={styles.jobRole}>{item.role}</h3>
-                <p className={styles.jobPeriod}>{item.period}</p>
-                <div className={styles.jobMeta}>
-                    <span className={styles.metaItem}><IconClock />{item.duration}</span>
-                    {item.location && <span className={styles.metaItem}><IconPin />{item.location}</span>}
-                </div>
+            <div className={styles.when}>
+                <span className={styles.period}>
+                    {formatMonth(job.start)} – {current ? 'Actualidad' : formatMonth(job.end)}
+                </span>
+                <span className={styles.duration}>{duration(job.start, job.end)}</span>
             </div>
 
-            {/* Divisor vertical */}
-            <div className={styles.verticalDivider} aria-hidden="true" />
+            <article className={styles.body} aria-labelledby={`job-${job.id}`}>
+                <div className={styles.titleRow}>
+                    <h3 id={`job-${job.id}`} className={styles.role}>{job.role}</h3>
+                    {current && <StatusIndicator tone="active" variant="tag">Actual</StatusIndicator>}
+                </div>
+                <p className={styles.company}>
+                    {job.company}<span aria-hidden="true"> · </span>
+                    <span className={styles.location}>{job.location}</span>
+                </p>
 
-            {/* Columna derecha — contenido */}
-            <div className={styles.jobRight}>
-                <p className={styles.jobDesc}>{item.description}</p>
-                <ul className={styles.achievementsList} aria-label="Logros">
-                    {item.achievements.map((a, i) => (
-                        <li key={i} className={styles.achievement}>
-                            <IconCheck color="#4ade80" />
-                            <span>{a}</span>
-                        </li>
-                    ))}
+                <ul className={styles.highlights}>
+                    {job.highlights.map(h => <li key={h}>{h}</li>)}
                 </ul>
-                <div className={styles.tagRow} role="list" aria-label="Tecnologías">
-                    {item.tags.map(t => (
-                        <span key={t} className={styles.tag} role="listitem">{t}</span>
-                    ))}
-                </div>
-            </div>
-        </motion.article>
-    )
-}
 
-/* ── Project Card ────────────────────────────────────────────── */
+                <ul className={styles.tags} aria-label={`Stack en ${job.company}`}>
+                    {job.stack.map(t => <li key={t} className={styles.tag}>{t}</li>)}
+                </ul>
 
-function ProjectCard({ item, index }) {
-    const ref = useRef(null)
-    const inView = useInView(ref, { once: true, margin: '-60px' })
-
-    return (
-        <motion.article
-            ref={ref}
-            className={styles.projectCard}
-            custom={index}
-            variants={fadeUp}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            aria-labelledby={`proj-${item.id}`}
-        >
-            <div className={styles.accentBarProject} aria-hidden="true" />
-
-            <div className={styles.projectInner}>
-                <div className={styles.projectMain}>
-                    <div className={styles.projectTop}>
-                        <div>
-                            <span className={styles.projectStack}>{item.stack}</span>
-                            <h3 id={`proj-${item.id}`} className={styles.projectTitle}>{item.title}</h3>
-                        </div>
-                        <span className={styles.projectPeriod}>{item.period}</span>
-                    </div>
-
-                    <p className={styles.jobDesc}>{item.description}</p>
-
-                    <ul className={styles.achievementsList} aria-label="Logros del proyecto">
-                        {item.achievements.map((a, i) => (
-                            <li key={i} className={styles.achievement}>
-                                <IconCheck color="#a78bfa" />
-                                <span>{a}</span>
-                            </li>
+                {projects.length > 0 && (
+                    <p className={styles.projects}>
+                        <span className={styles.projectsLabel}>Proyectos</span>
+                        {projects.map(p => (
+                            <a key={p.id} href={`#project-${p.id}`} className={styles.projectLink}>
+                                {p.name} <span aria-hidden="true">↗</span>
+                            </a>
                         ))}
-                    </ul>
-
-                    <div className={styles.tagRow} role="list" aria-label="Tecnologías">
-                        {item.tags.map(t => (
-                            <span key={t} className={`${styles.tag} ${styles.tagProject}`} role="listitem">{t}</span>
-                        ))}
-                    </div>
-                </div>
-
-                {item.image && (
-                    <div className={styles.projectMockupWrap}>
-                        <img src={item.image} alt={`Mockup de ${item.title}`} className={styles.projectMockup} />
-                    </div>
+                    </p>
                 )}
-            </div>
-        </motion.article>
+            </article>
+        </li>
     )
 }
-
-/* ── Section ─────────────────────────────────────────────────── */
 
 export const Experience = () => {
-    const headerRef = useRef(null)
-    const headerInView = useInView(headerRef, { once: true, margin: '-40px' })
-    const projRef = useRef(null)
-    const projInView = useInView(projRef, { once: true, margin: '-40px' })
+    const firstYear = JOBS[JOBS.length - 1].start.slice(0, 4)
 
     return (
         <section className={styles.section} id="experience" aria-labelledby="experience-heading">
-
-            <div className={styles.sectionBg} aria-hidden="true">
-                <div className={styles.bgGlow} />
-            </div>
-
-            {/* Header */}
-            <motion.header
-                ref={headerRef}
-                className={styles.header}
-                variants={fadeUp}
-                initial="hidden"
-                animate={headerInView ? 'visible' : 'hidden'}
-            >
-                <span className={styles.eyebrowSection} aria-hidden="true">TRAYECTORIA</span>
-                <h2 id="experience-heading" className={styles.sectionTitle}>
-                    Experiencia <em className={styles.titleEm}>&</em> Proyectos
+            <header className={styles.header}>
+                <SectionLabel index="02" meta={`${JOBS.length} empresas · ${firstYear} – hoy`}>
+                    Experiencia
+                </SectionLabel>
+                <h2 id="experience-heading" className={styles.title}>
+                    4 años llevando productos a&nbsp;producción.
                 </h2>
-                <p className={styles.sectionSub}>
-                    4 años de roles comerciales en producción · proyectos que definen mi stack actual.
-                </p>
-            </motion.header>
+            </header>
 
-            {/* proyecto de página web */}
-            <div className={styles.featuredProjectWrapper}>
-                <a
-                    href="https://cuva-website-c5dae.web.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.featuredProject}
-                >
-                    <div className={styles.featuredContent}>
-                        <span className={styles.featuredEyebrow}>PROYECTO DESTACADO</span>
-                        <h3 className={styles.featuredTitle}>CUVA</h3>
-                        <p className={styles.featuredDesc}>
-                            Plataforma educativa con un diseño moderno, responsivo y dinámico, creada para mejorar la comunicación y gestión escolar.
-                        </p>
-                        <span className={styles.featuredLinkText}>
-                            Visitar sitio web <span aria-hidden="true">&rarr;</span>
-                        </span>
-                    </div>
-                    <div className={styles.featuredImageWrapper}>
-                        <img src={cuvawebsite} alt="Vista previa de la Página Web Escolar" className={styles.featuredImage} />
-                    </div>
-                </a>
+            <div className={styles.layout}>
+                <StackCard />
+
+                <ol className={styles.timeline} aria-label="Historial laboral">
+                    {JOBS.map(job => <Job key={job.id} job={job} />)}
+                </ol>
             </div>
-
-            {/* proyecto aptus app */}
-            <div className={styles.apptusWrapper}>
-                <a
-                    href="https://github.com/chubibi/Apptus#-aptus--interactive-mobile-engineer-portfolio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.apptusProject}
-                    aria-labelledby="apptus-title"
-                >
-                    <div className={styles.apptusContent}>
-                        <div className={styles.badgeRow}>
-                            <span className={styles.statusBadge}>
-                                <span className={styles.pulseDot} aria-hidden="true" />
-                                Proyecto más reciente
-                            </span>
-                            <span className={styles.devBadge}>En desarrollo</span>
-                        </div>
-
-                        <span className={styles.apptusSubtitle}>React Native + Expo</span>
-                        <h3 id="apptus-title" className={styles.apptusTitle}>
-                            Apptus <em className={styles.apptusTitleEm}>Mobile</em>
-                        </h3>
-
-                        <p className={styles.apptusDesc}>
-                            Aplicación móvil desarrollada para consolidar mi portafolio de habilidades. Enfocada en rendimiento nativo, arquitectura limpia y flujos de usuario optimizados.
-                        </p>
-
-                        <div className={styles.skillsSection}>
-                            <ul className={styles.achievementsList} aria-label="Aspectos clave de Apptus">
-                                <li className={styles.achievement}>
-                                    <IconCheck color="#a78bfa" />
-                                    <span>Navegación gestual fluida (React Navigation)</span>
-                                </li>
-                                <li className={styles.achievement}>
-                                    <IconCheck color="#a78bfa" />
-                                    <span>Estado global reactivo con Zustand</span>
-                                </li>
-                                <li className={styles.achievement}>
-                                    <IconCheck color="#a78bfa" />
-                                    <span>CI/CD y actualizaciones OTA via EAS</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className={styles.tagRow} role="list" aria-label="Tecnologías usadas en Apptus">
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">React Native</span>
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">Expo</span>
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">Zustand</span>
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">TanStack Query</span>
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">UI/UX Mobile</span>
-                            <span className={`${styles.tag} ${styles.tagProject}`} role="listitem">EAS CLI</span>
-                        </div>
-
-                        <span className={styles.featuredLinkText}>
-                            Ver repositorio del proyecto <span aria-hidden="true">&rarr;</span>
-                        </span>
-                    </div>
-
-                    <div className={styles.apptusImageWrapper}>
-                        <img src={apptusApp} alt="Banner descriptivo de la aplicación móvil Apptus" className={styles.apptusImage} />
-                    </div>
-                </a>
-            </div>
-
-            {/* Jobs */}
-            <div className={styles.jobsList} aria-label="Historial de empleos">
-                {JOBS.map((job, i) => (
-                    <JobCard key={job.id} item={job} index={i} />
-                ))}
-            </div>
-
-            {/* Projects */}
-            <motion.div
-                ref={projRef}
-                className={styles.projectsSection}
-                variants={fadeUp}
-                initial="hidden"
-                animate={projInView ? 'visible' : 'hidden'}
-            >
-                <div className={styles.projectsHeader}>
-                    <span className={styles.eyebrowProject} aria-hidden="true">PROYECTOS</span>
-                    <h3 className={styles.projectsTitle}>
-                        Proyectos <em className={styles.titleEmProject}>Destacados</em>
-                    </h3>
-                </div>
-
-                <div className={styles.projectsGrid}>
-                    {PROJECTS.map((proj, i) => (
-                        <ProjectCard key={proj.id} item={proj} index={i} />
-                    ))}
-                </div>
-            </motion.div>
         </section>
     )
 }

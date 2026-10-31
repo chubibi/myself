@@ -1,0 +1,214 @@
+/* ── Selected Work ── */
+
+.section {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: var(--space-8) var(--gutter) var(--space-12);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.headerGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+}
+
+.title {
+    font-size: var(--fs-section);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.02;
+    text-wrap: balance;
+}
+
+.intro {
+    max-width: 46ch;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--text-dim);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+/* ── Etiquetas sobre la composición ── */
+.stageTag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+/* ── DexMi: laptop + teléfono superpuesto sobre panel claro ── */
+.dexmiStage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-right: 14%;
+}
+
+.dexmiStage > span {
+    align-self: flex-start;
+    color: #2F6B22;
+}
+
+.dexmiLaptop {
+    width: 100%;
+    height: auto;
+}
+
+.dexmiPhone {
+    position: absolute;
+    right: 0;
+    bottom: -4%;
+    width: 27%;
+    height: auto;
+    filter: drop-shadow(0 12px 18px rgba(16, 16, 16, 0.22));
+}
+
+/* ── CUVA: navegador + teléfono ── */
+.cuvaStage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-right: 10%;
+}
+
+.cuvaLaptop {
+    width: 100%;
+}
+
+.cuvaPhone {
+    position: absolute;
+    right: 0;
+    bottom: var(--space-4);
+    width: 22%;
+    min-width: 72px;
+}
+
+/* ── J2R: tres pantallas ── */
+.j2rStage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.j2rRow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 24px);
+    align-items: start;
+    padding-top: var(--space-3);
+}
+
+.j2rRaised {
+    transform: translateY(calc(-1 * var(--space-3)));
+}
+
+/* ── Otros proyectos ── */
+.archive {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-12);
+}
+
+.archiveTitle {
+    font-family: var(--font-mono);
+    font-size: var(--fs-small);
+    font-weight: 400;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.archiveList {
+    list-style: none;
+    border-top: var(--border);
+}
+
+.archiveList li {
+    border-bottom: var(--border);
+}
+
+.archiveLink {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px var(--space-2);
+    align-items: center;
+    padding: var(--space-2) 0;
+    color: var(--bone);
+    transition: background-color var(--dur-fast) var(--ease-out), padding var(--dur-base) var(--ease-out);
+}
+
+.archiveLink:hover {
+    background: var(--carbon-well);
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+}
+
+.archiveName {
+    font-size: var(--fs-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-snug);
+}
+
+.archiveCategory {
+    grid-column: 1;
+    font-size: var(--fs-small);
+    color: var(--text-dim);
+}
+
+.archiveCta {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-control);
+    color: var(--text-dim);
+}
+
+.archiveLink:hover .archiveCta {
+    color: var(--beacon-orange);
+}
+
+.archiveStatus {
+    grid-column: 1;
+}
+
+/* ── Breakpoints ── */
+@media (min-width: 768px) {
+    .headerGrid {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        align-items: end;
+        gap: var(--space-6);
+    }
+
+    .archiveLink {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 3fr) auto;
+    }
+
+    .archiveCategory,
+    .archiveStatus,
+    .archiveCta {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section {
+        padding-top: var(--space-12);
+    }
+}

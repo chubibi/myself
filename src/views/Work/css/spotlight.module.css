@@ -1,0 +1,308 @@
+/* ── Spotlight / Case study: VDE Connect ── */
+
+.spotlight {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-4) 0 0;
+    border-top: var(--border);
+    scroll-margin-top: calc(var(--header-h) + var(--space-2));
+}
+
+/* ── Encabezado ── */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-small);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--bone);
+}
+
+.index {
+    color: var(--beacon-orange);
+}
+
+.category {
+    color: var(--text-dim);
+}
+
+.titleRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+}
+
+.name {
+    font-size: var(--fs-hero);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    line-height: 0.95;
+}
+
+.summary {
+    max-width: 48ch;
+    font-size: var(--fs-kicker);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--text-dim);
+}
+
+/* ── Grid ── */
+.grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+}
+
+/* ── Demo ── */
+.demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: var(--space-3);
+    background: var(--carbon-well);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.tablist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 0 12px;
+    background: transparent;
+    border: 1px solid var(--divider);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: var(--fs-control);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.tab:hover {
+    color: var(--bone);
+    border-color: var(--muted);
+}
+
+.tab[aria-selected='true'] {
+    color: var(--console-black);
+    background: var(--bone);
+    border-color: var(--bone);
+}
+
+.tabNum {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.tab[aria-selected='true'] .tabNum {
+    color: var(--orange-700);
+}
+
+.panel {
+    display: flex;
+    justify-content: center;
+}
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.phone {
+    width: min(100%, 280px);
+    animation: swap var(--dur-slow) var(--ease-out);
+}
+
+.caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    max-width: 36ch;
+    min-height: 4.5em;
+    font-size: var(--fs-small);
+    line-height: 1.45;
+    text-align: center;
+    color: var(--text-dim);
+}
+
+@keyframes swap {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Narrativa ── */
+.story {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+}
+
+/* Card clara de resultado (patrón Dispatch) */
+.outcome {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: var(--space-3);
+    background: var(--bone);
+    color: var(--night-floor);
+    border-radius: var(--radius-lg);
+}
+
+.outcomeLabel {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: #5E5855;
+}
+
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+}
+
+.checklist li {
+    position: relative;
+    padding-left: 22px;
+    font-size: var(--fs-body);
+    line-height: 1.45;
+}
+
+.checklist li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.35em;
+    width: 10px;
+    height: 6px;
+    border-left: 1.5px solid var(--charge-green);
+    border-bottom: 1.5px solid var(--charge-green);
+    transform: rotate(-45deg);
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.story .block + .block {
+    padding-top: var(--space-3);
+    border-top: var(--border);
+}
+
+.blockLabel {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.blockText {
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--bone);
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    list-style: none;
+}
+
+.results li {
+    position: relative;
+    padding-left: 20px;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+}
+
+.results li {
+    font-weight: 500;
+}
+
+.results li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3E7A2C;
+}
+
+/* En móvil/tablet el resultado va justo después de la demo (lectura rápida) */
+.demo { order: 0; }
+.outcome { order: 1; }
+.story { order: 2; }
+
+/* ── Breakpoints ── */
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .demo {
+        grid-row: span 2;
+        padding: var(--space-4);
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+        gap: var(--space-6);
+        align-items: start;
+    }
+
+    .demo {
+        grid-row: auto;
+        order: 2;
+        position: sticky;
+        top: calc(var(--header-h) + var(--space-3));
+    }
+
+    .story {
+        order: 1;
+    }
+
+    .outcome {
+        order: 3;
+    }
+}

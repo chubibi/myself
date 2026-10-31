@@ -1,141 +1,109 @@
-import { useState } from "react"
-import { motion } from "motion/react"
-import style from "./css/contact.module.css"
+import { useState } from 'react'
+import styles from './css/contact.module.css'
+import { PROFILE } from '../../data/profile'
+import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
+import { StatusIndicator } from '../../components/StatusIndicator/StatusIndicator'
+import { CTAButton, ArrowRight, ArrowUpRight } from '../../components/CTAButton/CTAButton'
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.12,
-            delayChildren: 0.1,
-        },
-    },
-}
+/* Canales directos reales (data/profile.js) */
+const CHANNELS = [
+    { label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
+    { label: 'WhatsApp', value: PROFILE.phoneDisplay, href: PROFILE.whatsapp, external: true },
+    { label: 'LinkedIn', value: 'Josué Isaías Cazares Pérez', href: PROFILE.linkedin, external: true },
+    { label: 'GitHub', value: 'github.com/chubibi', href: PROFILE.github, external: true },
+]
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-}
-
+/*
+ * Contacto: el formulario conserva el comportamiento original (abre el cliente de
+ * correo con el mensaje armado). No hay backend: se informa al usuario de ello.
+ */
 export default function Contact() {
-    const [sending, setSending] = useState(false)
+    const [status, setStatus] = useState('')
 
     function handleSubmit(e) {
         e.preventDefault()
-        setSending(true)
+        const form = e.currentTarget
+        const data = new FormData(form)
+        const nombre = data.get('nombre').trim()
+        const correo = data.get('correo').trim()
+        const mensaje = data.get('mensaje').trim()
 
-        const formData = new FormData(e.target)
-        const nombre = formData.get('nombre')
-        const correo = formData.get('correo')
-        const mensaje = formData.get('mensaje')
+        const subject = `Contacto desde el portafolio — ${nombre}`
+        const body = `Nombre: ${nombre}\nCorreo: ${correo}\n\n${mensaje}`
+        window.location.href =
+            `mailto:${PROFILE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
-        const subject = `Contacto desde Portfolio - Bienvenido: ${nombre}`
-        const body = `Nombre: ${nombre}%0D%0ACorreo: ${correo}%0D%0A%0D%0AMensaje:%0D%0A${mensaje}`
-
-        window.location.href = `mailto:josue.cazares.10@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`
-
-        setTimeout(() => {
-            setSending(false)
-            e.target.reset()
-        }, 1000)
+        setStatus('Se abrió tu app de correo con el mensaje listo para enviar.')
+        form.reset()
     }
 
     return (
-        <section className={style.wrapperMain} id="contact" aria-label="Sección de contacto">
-            
-            {/* Fondo decorativo homogéneo al de Body */}
-            <div className={style.contactBg} aria-hidden="true">
-                <div className={style.contactBgGlow1} />
-                <div className={style.contactBgGlow2} />
-                <div className={style.contactBgGrid} />
-            </div>
+        <section className={styles.section} id="contact" aria-labelledby="contact-title">
+            <SectionLabel index="04" meta="Respuesta por email">Contacto</SectionLabel>
 
-            <motion.div 
-                className={style.contactSection}
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-            >
-                <div className={style.contactHeader}>
-                    <motion.div className={style.headerBadges} variants={itemVariants}>
-                        <span className={style.badge} role="status">
-                            <span className={style.badgeDot} />
-                            Mobile Developer
-                        </span>
-                        <span className={style.badge} role="status">
-                            <span className={style.badgeDot} />
-                            Disponible para trabajar
-                        </span>
-                    </motion.div>
-                    
-                    <motion.h2 className={style.contactTitle} variants={itemVariants}>
-                        ¿Tienes una <em className={style.titleAccent}>idea?</em>
-                    </motion.h2>
-                    
-                    <motion.p className={style.contactDescription} variants={itemVariants}>
-                        Si te ha gustado mi trabajo, puedes enviarme un correo para que nos pongamos en contacto.
-                    </motion.p>
+            <div className={styles.grid}>
+                {/* ── Cierre y canales ── */}
+                <div className={styles.closing}>
+                    {PROFILE.available && (
+                        <StatusIndicator tone="positive" variant="tag" pulse>Disponible para proyectos</StatusIndicator>
+                    )}
+                    <h2 id="contact-title" className={styles.title}>
+                        ¿Tienes un producto en mente? Construyámoslo.
+                    </h2>
+                    <p className={styles.lead}>
+                        Apps móviles, plataformas web o un MVP desde cero.
+                        Escríbeme y te respondo por email.
+                    </p>
+
+                    <ul className={styles.channels}>
+                        {CHANNELS.map(c => (
+                            <li key={c.label}>
+                                <a
+                                    href={c.href}
+                                    className={styles.channel}
+                                    {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                                >
+                                    <span className={styles.channelLabel}>{c.label}</span>
+                                    <span className={styles.channelValue}>{c.value}</span>
+                                    <span className={styles.channelArrow} aria-hidden="true"><ArrowUpRight /></span>
+                                    {c.external && <span className="visually-hidden"> (abre en una pestaña nueva)</span>}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
-                <motion.form 
-                    className={style.contactForm} 
-                    onSubmit={handleSubmit}
-                    variants={itemVariants}
-                >
-                    <div className={style.formRow}>
-                        <div className={style.inputGroup}>
-                            <input
-                                name="nombre"
-                                type="text"
-                                placeholder="Nombre"
-                                className={style.formInput}
-                                required
-                                aria-label="Tu nombre"
-                            />
+                {/* ── Formulario ── */}
+                <form className={styles.form} onSubmit={handleSubmit} aria-labelledby="form-title">
+                    <h3 id="form-title" className={styles.formTitle}>Envíame un mensaje</h3>
+
+                    <div className={styles.row}>
+                        <div className={styles.field}>
+                            <label htmlFor="contact-nombre" className={styles.label}>Nombre</label>
+                            <input id="contact-nombre" name="nombre" type="text" autoComplete="name" required className={styles.input} />
                         </div>
-                        <div className={style.inputGroup}>
-                            <input
-                                name="correo"
-                                type="email"
-                                placeholder="Correo electrónico"
-                                className={style.formInput}
-                                required
-                                aria-label="Tu correo electrónico"
-                            />
+                        <div className={styles.field}>
+                            <label htmlFor="contact-correo" className={styles.label}>Correo</label>
+                            <input id="contact-correo" name="correo" type="email" autoComplete="email" required className={styles.input} />
                         </div>
                     </div>
-                    <div className={style.inputGroup}>
-                        <textarea
-                            name="mensaje"
-                            placeholder="Tu mensaje..."
-                            className={style.formTextarea}
-                            rows={6}
-                            required
-                            aria-label="Tu mensaje"
-                        ></textarea>
+
+                    <div className={styles.field}>
+                        <label htmlFor="contact-mensaje" className={styles.label}>Mensaje</label>
+                        <textarea id="contact-mensaje" name="mensaje" rows={5} required className={styles.input} aria-describedby="contact-hint" />
                     </div>
-                    <motion.button 
-                        type="submit" 
-                        className={style.submitBtn}
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        disabled={sending}
-                    >
-                        {sending ? "Preparando correo..." : "Enviar mensaje"}
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </motion.button>
-                </motion.form>
-            </motion.div>
+
+                    <p id="contact-hint" className={styles.hint}>
+                        Al enviar se abrirá tu app de correo con el mensaje listo.
+                    </p>
+
+                    <CTAButton type="submit" icon={<ArrowRight />} className={styles.submit}>
+                        Enviar mensaje
+                    </CTAButton>
+
+                    <p className={styles.status} role="status" aria-live="polite">{status}</p>
+                </form>
+            </div>
         </section>
     )
 }
-

@@ -1,0 +1,70 @@
+/*
+ * Geometría medida sobre los mockups exportados (porcentajes del lienzo):
+ * - iPhone 15 (720×1479): pantalla 1179×2556 px del original → proporción exacta del dispositivo.
+ * - MacBook Pro 16 (1600×1282): área visible bajo el notch.
+ */
+
+.phone,
+.laptop {
+    position: relative;
+}
+
+.phone {
+    aspect-ratio: 720 / 1479;
+}
+
+.laptop {
+    aspect-ratio: 1600 / 1282;
+}
+
+.frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+}
+
+.phoneScreen {
+    position: absolute;
+    left: 4.49%;
+    top: 1.88%;
+    width: 91.18%;
+    height: 96.23%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 15.3% / 7.05%;
+    background: var(--console-black);
+}
+
+.laptopScreen {
+    position: absolute;
+    left: 10.5%;
+    top: 3.6%;
+    width: 78.94%;
+    height: 61.93%;
+    object-fit: cover;
+    object-position: top;
+    background: var(--console-black);
+}
+
+/* ── Etiqueta ── */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--charge-green);
+    white-space: nowrap;
+}
+
+.tag:not([data-kind='real']) {
+    color: var(--orange-300);
+}

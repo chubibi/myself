@@ -1,93 +1,137 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-scroll'
+import { useEffect, useRef, useState } from 'react'
 import styles from './css/navBar.module.css'
+import { NAV_LINKS, CONTACT_SECTION_ID, PROFILE } from '../../data/profile'
 
-const NAV_LINKS = [
-    { to: 'inicio', label: 'Inicio' },
-    { to: 'experience', label: 'Experiencia' },
-    { to: 'sobre-mi', label: 'Sobre mí' },
-    { to: 'formation', label: 'Educación' },
-    { to: 'contact', label: 'Contacto' },
-]
+const SECTION_IDS = [...NAV_LINKS.map(l => l.id), CONTACT_SECTION_ID]
 
-export function NavBar() {
-    const [active, setActive] = useState('inicio')
-    const [menuOpen, setMenuOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
+/* Marca la sección visible para resaltar el enlace activo (aria-current). */
+function useActiveSection(ids) {
+    const [active, setActive] = useState(null)
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20)
+        const nodes = ids.map(id => document.getElementById(id)).filter(Boolean)
+        if (!nodes.length || !('IntersectionObserver' in window)) return
+
+        const observer = new IntersectionObserver(
+            entries => {
+                const visible = entries
+                    .filter(e => e.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+                if (visible) setActive(visible.target.id)
+            },
+            { rootMargin: '-35% 0px -55% 0px', threshold: [0, 0.25, 0.5] }
+        )
+        nodes.forEach(n => observer.observe(n))
+        return () => observer.disconnect()
+    }, [ids])
+
+    return active
+}
+
+export function NavBar() {
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+    const toggleRef = useRef(null)
+    const active = useActiveSection(SECTION_IDS)
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8)
+        onScroll()
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    /* Cerrar el menú al hacer resize a desktop */
+    /* Cerrar con Escape (devolviendo el foco) y al pasar a desktop */
     useEffect(() => {
+        if (!menuOpen) return
+        const onKey = e => {
+            if (e.key === 'Escape') {
+                setMenuOpen(false)
+                toggleRef.current?.focus()
+            }
+        }
         const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false) }
+        window.addEventListener('keydown', onKey)
         window.addEventListener('resize', onResize)
-        return () => window.removeEventListener('resize', onResize)
-    }, [])
+        return () => {
+            window.removeEventListener('keydown', onKey)
+            window.removeEventListener('resize', onResize)
+        }
+    }, [menuOpen])
+
+    const closeMenu = () => setMenuOpen(false)
 
     return (
-        <>
-            {/* ── DESKTOP PILL ── */}
-            <nav className={`${styles.desktopNav} ${scrolled ? styles.scrolled : ''}`}>
-                <div className={styles.pill}>
-                    {NAV_LINKS.map(({ to, label }) => (
-                        <Link
-                            key={to}
-                            to={to}
-                            smooth
-                            duration={600}
-                            offset={-80}
-                            spy
-                            onSetActive={() => setActive(to)}
-                        >
-                            <span className={`${styles.pillLink} ${active === to ? styles.pillLinkActive : ''}`}>
-                                {label}
-                            </span>
-                        </Link>
-                    ))}
-                </div>
-            </nav>
+        <header className={`${styles.header} ${scrolled || menuOpen ? styles.scrolled : ''}`}>
+            <div className={styles.bar}>
+                <a href="#inicio" className={styles.brand} onClick={closeMenu}>
+                    <span className={styles.brandMark} aria-hidden="true" />
+                    <span className={styles.brandName}>{PROFILE.name}</span>
+                    <span className={styles.brandRole}>{PROFILE.title}</span>
+                </a>
 
-            {/* ── MOBILE HEADER ── */}
-            <nav className={`${styles.mobileNav} ${scrolled ? styles.scrolled : ''}`}>
-                <div className={styles.mobileHeader}>
-                    <span className={styles.mobileLogo}>JC.</span>
-
-                    <button
-                        className={styles.hamburger}
-                        onClick={() => setMenuOpen(prev => !prev)}
-                        aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-                    >
-                        <span className={`${styles.bar} ${menuOpen ? styles.barTop : ''}`} />
-                        <span className={`${styles.bar} ${menuOpen ? styles.barMid : ''}`} />
-                        <span className={`${styles.bar} ${menuOpen ? styles.barBot : ''}`} />
-                    </button>
-                </div>
-
-                {menuOpen && (
-                    <div className={styles.mobileMenu}>
-                        {NAV_LINKS.map(({ to, label }) => (
-                            <Link
-                                key={to}
-                                to={to}
-                                smooth
-                                duration={600}
-                                offset={-0}
-                                spy
-                                onSetActive={() => setActive(to)}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                <span className={`${styles.mobileLink} ${active === to ? styles.mobileLinkActive : ''}`}>
+                <nav className={styles.desktopNav} aria-label="Principal">
+                    <ul className={styles.list}>
+                        {NAV_LINKS.map(({ id, label, index }) => (
+                            <li key={id}>
+                                <a
+                                    href={`#${id}`}
+                                    className={styles.link}
+                                    aria-current={active === id ? 'true' : undefined}
+                                >
+                                    <span className={styles.linkIndex} aria-hidden="true">{index}</span>
                                     {label}
-                                </span>
-                            </Link>
+                                </a>
+                            </li>
                         ))}
-                    </div>
-                )}
+                    </ul>
+                </nav>
+
+                <a href={`#${CONTACT_SECTION_ID}`} className={styles.cta} onClick={closeMenu}>
+                    Contacto
+                </a>
+
+                <button
+                    ref={toggleRef}
+                    type="button"
+                    className={styles.toggle}
+                    aria-expanded={menuOpen}
+                    aria-controls="mobile-menu"
+                    onClick={() => setMenuOpen(open => !open)}
+                >
+                    <span className="visually-hidden">{menuOpen ? 'Cerrar menú' : 'Abrir menú'}</span>
+                    <span className={styles.toggleLines} aria-hidden="true" />
+                </button>
+            </div>
+
+            <nav
+                id="mobile-menu"
+                className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}
+                aria-label="Principal (móvil)"
+                hidden={!menuOpen}
+            >
+                <ul className={styles.mobileList}>
+                    {NAV_LINKS.map(({ id, label, index }) => (
+                        <li key={id}>
+                            <a
+                                href={`#${id}`}
+                                className={styles.mobileLink}
+                                aria-current={active === id ? 'true' : undefined}
+                                onClick={closeMenu}
+                            >
+                                <span className={styles.linkIndex} aria-hidden="true">{index}</span>
+                                {label}
+                            </a>
+                        </li>
+                    ))}
+                    <li>
+                        <a href={`#${CONTACT_SECTION_ID}`} className={styles.mobileLink} onClick={closeMenu}>
+                            <span className={styles.linkIndex} aria-hidden="true">→</span>
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
             </nav>
-        </>
+        </header>
     )
 }
