@@ -1,0 +1,11 @@
+# Portafolio de Josué Cazares — https://chubibi.github.io/myself/
+#
+# Nota: los buscadores solo leen robots.txt en la raíz del dominio
+# (https://chubibi.github.io/robots.txt). Este archivo, servido en /myself/,
+# es informativo. Mientras la raíz no tenga robots.txt (404), todo el sitio
+# es rastreable. El sitemap se envía directamente en Google Search Console.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://chubibi.github.io/myself/sitemap.xml
